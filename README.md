@@ -71,3 +71,13 @@ There is also a the [updates-and-fixes](https://github.com/jonasschmedtmann/comp
 ### Q14: I'm looking for the old course version (v1) files. Where can I find them?
 
 **A:** They are in this same repo, but in the [v1 branch](https://github.com/jonasschmedtmann/complete-javascript-course/tree/v1). So just go to [v1](https://github.com/jonasschmedtmann/complete-javascript-course/tree/v1), and download the code from there.
+
+### CDN images
+
+```bash
+find ./ -type f -name '*01-29-*.md' -exec sed -i'' -e  "s/raw.githubusercontent.com\/CatzillaOrz\/imgcdn\/master\//cdn.jsdelivr.net\/gh\/catzillaorz\/imgcdn\//g" {} \;
+
+```
+
+- avatar
+  ![avatar2020-05-03](https://cdn.jsdelivr.net/gh/catzillaorz/imgcdn/vsc_img/avatar2020-05-03.JPG)
