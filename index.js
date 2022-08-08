@@ -1,4 +1,6 @@
-'use strict';
+import './style.css';
+
+('use strict');
 
 ///////////////////////////////////////
 // Modal window
