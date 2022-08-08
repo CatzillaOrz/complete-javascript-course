@@ -81,3 +81,8 @@ find ./ -type f -name '*01-29-*.md' -exec sed -i'' -e  "s/raw.githubusercontent.
 
 - avatar
   ![avatar2020-05-03](https://cdn.jsdelivr.net/gh/catzillaorz/imgcdn/vsc_img/avatar2020-05-03.JPG)
+
+### img
+
+- https://raw.githubusercontent.com/CatzillaOrz/complete-javascript-course/master/13-Advanced-DOM-Bankist/starter/img/logo.png
+- ![avatar2020-05-03](https://cdn.jsdelivr.net/gh/catzillaorz/complete-javascript-course/master/13-Advanced-DOM-Bankist/starter/img/logo.png)
