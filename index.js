@@ -4,6 +4,15 @@ import './style.css';
 ///////////////////////////////////////
 // Modal window
 
+const message = document.createElement('div');
+message.classList.add('cookie-message');
+// message.textContent = 'we use cookie for improved'
+message.innerHTML =
+  'we use cookie for improved functionality and analytics. <button class="btn btn--close-cookie"> Got it! </button>';
+const header = document.querySelector('header');
+header.prepend(message);
+header.append(message);
+
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
