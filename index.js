@@ -1,17 +1,33 @@
 import './style.css';
 ('use strict');
 
-///////////////////////////////////////
-// Modal window
-
-const message = document.createElement('div');
-message.classList.add('cookie-message');
+/* DOM practice */
+const message = document.createElement('div'); /* create dom */
+message.classList.add('cookie-message'); /* add class */
 // message.textContent = 'we use cookie for improved'
 message.innerHTML =
   'we use cookie for improved functionality and analytics. <button class="btn btn--close-cookie"> Got it! </button>';
 const header = document.querySelector('header');
-header.prepend(message);
+// header.prepend(message); /* add dom */
 header.append(message);
+document
+  .querySelector('.btn--close-cookie')
+  .addEventListener('click', function () {
+    message.remove(); /* remvoe dom */
+  });
+// style
+message.style.background = '#37383d';
+message.style.width = '120%';
+
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+
+///////////////////////////////////////
+
+// Modal window
 
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
