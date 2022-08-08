@@ -89,4 +89,16 @@ btnScrollTo.addEventListener('click', function (e) {
   // });
 
   section1.scrollIntoView({ behavior: 'smooth' });
+
+  // Event Delegation Nav
+  /* document.querySelector('.nav__links').addEventListener('click', function (e) {
+    console.log('e', e);
+  }); */
+
+  const h1 = document.querySelector('h1');
+  // console.log(h1.querySelectorAll('.hightlight'));
+  // console.log(h1.childNodes);
+  // console.log(h1.children);
+
+  h1.closest('.header').style.background = 'var(--gradient-secondary)';
 });
