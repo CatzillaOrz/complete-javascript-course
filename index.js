@@ -2,28 +2,28 @@ import './style.css';
 ('use strict');
 
 /* DOM practice */
-const message = document.createElement('div'); /* create dom */
-message.classList.add('cookie-message'); /* add class */
+// const message = document.createElement('div'); /* create dom */
+// message.classList.add('cookie-message'); /* add class */
 // message.textContent = 'we use cookie for improved'
-message.innerHTML =
-  'we use cookie for improved functionality and analytics. <button class="btn btn--close-cookie"> Got it! </button>';
-const header = document.querySelector('header');
+// message.innerHTML =
+//   'we use cookie for improved functionality and analytics. <button class="btn btn--close-cookie"> Got it! </button>';
+// const header = document.querySelector('header');
 // header.prepend(message); /* add dom */
-header.append(message);
-document
-  .querySelector('.btn--close-cookie')
-  .addEventListener('click', function () {
-    message.remove(); /* remvoe dom */
-  });
+// header.append(message);
+// document
+//   .querySelector('.btn--close-cookie')
+//   .addEventListener('click', function () {
+//     message.remove(); /* remvoe dom */
+//   });
 // style
-message.style.background = '#37383d';
-message.style.width = '120%';
+// message.style.background = '#37383d';
+// message.style.width = '120%';
 
 // console.log(getComputedStyle(message).color);
 // console.log(getComputedStyle(message).height);
 
-message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+// message.style.height =
+// Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
 
 // document.documentElement.style.setProperty('--color-primary', 'orangered');
 
