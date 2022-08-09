@@ -69,7 +69,7 @@ const h1 = document.querySelector('h1');
 // console.log(h1.children);
 console.log(h1.parentElement.children);
 
-h1.closest('.header').style.background = 'var(--gradient-secondary)';
+// h1.closest('.header').style.background = 'var(--gradient-secondary)';
 
 [...h1.parentElement.children].forEach(function (el) {
   console.log(el);
