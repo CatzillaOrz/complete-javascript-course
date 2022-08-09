@@ -19,8 +19,8 @@ document
 message.style.background = '#37383d';
 message.style.width = '120%';
 
-console.log(getComputedStyle(message).color);
-console.log(getComputedStyle(message).height);
+// console.log(getComputedStyle(message).color);
+// console.log(getComputedStyle(message).height);
 
 message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
@@ -58,25 +58,6 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-// Event Delegation Nav
-/* document.querySelector('.nav__links').addEventListener('click', function (e) {
-    console.log('e', e);
-  }); */
-
-const h1 = document.querySelector('h1');
-// console.log(h1.querySelectorAll('.hightlight'));
-// console.log(h1.childNodes);
-// console.log(h1.children);
-console.log(h1.parentElement.children);
-
-// h1.closest('.header').style.background = 'var(--gradient-secondary)';
-
-[...h1.parentElement.children].forEach(function (el) {
-  console.log(el);
-
-  // if (el !== h1) el.style.transform = 'scale(0.5)';
-});
-
 //scroll to
 
 const btnScrollTo = document.querySelector('.btn--scroll-to');
@@ -88,7 +69,7 @@ btnScrollTo.addEventListener('click', function (e) {
 
   // console.log(e.target.getBoundingClientRect());
 
-  console.log('Current scroll (X/Y):', window.pageXOffset, pageYOffset);
+  // console.log('Current scroll (X/Y):', window.pageXOffset, pageYOffset);
 
   // console.log(
   //   'heig/width viewport:',
@@ -108,4 +89,44 @@ btnScrollTo.addEventListener('click', function (e) {
   // });
 
   section1.scrollIntoView({ behavior: 'smooth' });
+  // scroll end
 });
+
+// Event Delegation Nav
+/* document.querySelector('.nav__links').addEventListener('click', function (e) {
+    console.log('e', e);
+  }); */
+
+// const h1 = document.querySelector('h1');
+// console.log(h1.querySelectorAll('.hightlight'));
+// console.log(h1.childNodes);
+// console.log(h1.children);
+// console.log(h1.parentElement.children);
+
+// h1.closest('.header').style.background = 'var(--gradient-secondary)';
+
+// [...h1.parentElement.children].forEach(function (el) {
+//   console.log(el);
+
+//   if (el !== h1) el.style.transform = 'scale(0.5)';
+// });
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelectorAll('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.forEach((t) =>
+  t.addEventListener('click', (e) => {
+    const clicked = e.target.closest('.operations__tab');
+    console.log(clicked);
+    if (!clicked) return;
+    tabs.forEach((t) => t.classList.remove('operations__tab--active'));
+    tabsContent.forEach((t) =>
+      t.classList.remove('operations__content--active')
+    );
+    clicked.classList.add('operations__tab--active');
+    document
+      .querySelector(`.operations__content--${clicked.dataset.tab}`)
+      .classList.add('operations__content--active');
+  })
+);
