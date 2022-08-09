@@ -185,7 +185,6 @@ const allSections = document.querySelectorAll('.section');
 
 const revealSection = function (entries, observer) {
   const [entry] = entries;
-  console.log(entry);
   entry.target.classList.remove('section--hidden');
   observer.unobserve(entry.target);
 };
