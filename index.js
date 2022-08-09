@@ -240,22 +240,22 @@ const btnRight = document.querySelector('.slider__btn--right');
 
 let curSlide = 0;
 const maxSlide = slides.length;
-
+/* 
 const slider = document.querySelector('.slider');
 slider.style.transform = 'scale(0.4) translateX(-800px)';
-slider.style.overflow = 'visible';
+slider.style.overflow = 'visible'; */
 
 slides.forEach((s, i) => {
   s.style.transform = `translateX(${100 * i}%)`;
 });
 
 const goToSlide = function (slide) {
-  console.log(slide);
-
   slides.forEach((s, i) => {
     s.style.transform = `translateX(${100 * (i - slide)}%)`;
   });
 };
+
+goToSlide(0);
 
 const nextSlide = function () {
   if (curSlide === maxSlide - 1) curSlide = 0;
@@ -264,7 +264,7 @@ const nextSlide = function () {
 };
 
 const preSlide = function () {
-  if (curSlide < 1) curSlide = 3;
+  if (curSlide === 0) curSlide = maxSlide - 1;
   else curSlide--;
   goToSlide(curSlide);
 };
