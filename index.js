@@ -276,3 +276,19 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'ArrowLeft') preSlide();
   e.code === 'ArrowRight' && nextSlide();
 });
+
+/*
+ **  dots Implement
+ **
+ **
+ */
+const dotContainer = document.querySelector('.dots');
+const createDots = function () {
+  slides.forEach(function (_, i) {
+    dotContainer.insertAdjacentHTML(
+      'beforeend',
+      `<button class="dots_dot" data-slide="${i}"></button>`
+    );
+  });
+};
+createDots();
