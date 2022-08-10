@@ -271,3 +271,8 @@ const preSlide = function () {
 
 btnLeft.addEventListener('click', preSlide);
 btnRight.addEventListener('click', nextSlide);
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'ArrowLeft') preSlide();
+  e.code === 'ArrowRight' && nextSlide();
+});
