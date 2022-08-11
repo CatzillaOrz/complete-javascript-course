@@ -287,8 +287,17 @@ const createDots = function () {
   slides.forEach(function (_, i) {
     dotContainer.insertAdjacentHTML(
       'beforeend',
-      `<button class="dots_dot" data-slide="${i}"></button>`
+      `<button class="dots__dot" data-slide="${i}"></button>`
     );
   });
 };
 createDots();
+
+// dot deligation
+
+dotContainer.addEventListener('click', function (e) {
+  if (e.target.classList.contains('dots__dot')) {
+    const { slide } = e.target.dataset;
+    goToSlide(slide);
+  }
+});
