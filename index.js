@@ -23,7 +23,7 @@ class Workout {
   }
 }
 
-export class Running extends Workout {
+class Running extends Workout {
   constructor(coords, distance, duration, cadence) {
     super(coords, distance, duration);
     this.cadence = cadence;
@@ -36,12 +36,11 @@ export class Running extends Workout {
     return this.pace;
   }
 }
-export class Cycling extends Workout {
+class Cycling extends Workout {
   constructor(coords, distance, duration, elevationGain) {
     super(coords, distance, duration);
     this.elevationGain = elevationGain;
     this.calcSpeed();
-    console.log(this.coords, this.distance, this.duration, this.elevationGain);
   }
 
   calcSpeed() {
@@ -106,7 +105,7 @@ class App {
     const allPositive = (...inputs) => inputs.every((inp) => inp > 0);
     // Get data from form
 
-    const type = +inputType.value;
+    const type = inputType.value;
     const distance = +inputDistance.value;
     const duration = +inputDuration.value;
     const { lat, lng } = this.#mapEvent.latlng;
@@ -124,6 +123,7 @@ class App {
 
         return;
       }
+
       workout = new Running([lat, lng], distance, duration, cadence);
     }
 
