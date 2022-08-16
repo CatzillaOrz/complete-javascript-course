@@ -23,7 +23,7 @@ class Workout {
   }
 }
 
-class Running extends Workout {
+export class Running extends Workout {
   constructor(coords, distance, duration, cadence) {
     super(coords, distance, duration);
     this.cadence = cadence;
@@ -36,11 +36,12 @@ class Running extends Workout {
     return this.pace;
   }
 }
-class Cycling extends Workout {
+export class Cycling extends Workout {
   constructor(coords, distance, duration, elevationGain) {
     super(coords, distance, duration);
     this.elevationGain = elevationGain;
     this.calcSpeed();
+    console.log(this.coords, this.distance, this.duration, this.elevationGain);
   }
 
   calcSpeed() {
@@ -52,7 +53,7 @@ class Cycling extends Workout {
 class App {
   #map;
   #mapEvent;
-  #workouts;
+  #workouts = [];
   constructor() {
     this._getPosition();
 
@@ -123,7 +124,7 @@ class App {
 
         return;
       }
-       workout = new Running([lat, lng], distance, duration, cadence);
+      workout = new Running([lat, lng], distance, duration, cadence);
     }
 
     // If workout cycling, create cycling object
@@ -136,12 +137,12 @@ class App {
         console.error('Inputs have to be positive numbers!');
         return;
       }
-      workout = new Cycling([lat, lng], distance, duration, elevation)
+      workout = new Cycling([lat, lng], distance, duration, elevation);
     }
 
     // Add new object to workout array
     this.#workouts.push(workout);
-
+    console.log(workout, this.#workouts);
 
     // Render workout on map as marker
 
