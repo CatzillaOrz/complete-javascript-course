@@ -12,6 +12,7 @@ const inputElevation = document.querySelector('.form__input--elevation');
 class Workout {
   date = new Date();
   id = (Date.now() + '').slice(-10);
+  clicks = 0;
 
   constructor(coords, distance, duration) {
     this.coords = coords;
@@ -28,6 +29,10 @@ class Workout {
     }
      ${this.date.getDate()}
     `;
+  }
+
+  click() {
+    this.clicks++;
   }
 }
 
@@ -255,7 +260,14 @@ class App {
     const workoutEl = e.target.closest('.workout');
     if (!workoutEl) return;
     const workout = this.#workouts.find((e) => e.id === workoutEl.dataset.id);
-    this.#map.setView(workout.coords, this.#zoomLevel);
+    this.#map.setView(workout.coords, this.#zoomLevel, {
+      animate: true,
+      pan: {
+        duration: 1,
+      },
+    });
+    // using the public interface
+    workout.click();
   }
 }
 
