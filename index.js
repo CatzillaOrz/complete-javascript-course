@@ -23,9 +23,9 @@ class Workout {
     // prettier-ignore
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    this.discriiption = `${this.type[0].toUpperCase()}${this.type.slice(
-      1
-    )} on ${months[this.date.getMonth()]}
+    this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${
+      months[this.date.getMonth()]
+    }
      ${this.date.getDate()}
     `;
   }
@@ -105,6 +105,17 @@ class App {
     inputDistance.focus();
   }
 
+  _HiddenForm() {
+    inputDistance.value =
+      inputDuration.value =
+      inputCadence.value =
+      inputElevation.value =
+        '';
+    form.style.display = 'none'; // avoid hidden anomition
+    form.classList.add('hidden');
+    setTimeout(() => (form.style.display = 'grid'), 1000);
+  }
+
   _toggleElevationField() {
     inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
     inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
@@ -162,11 +173,8 @@ class App {
     // Render workout on list
     this._renderWorkout(workout);
 
-    inputDistance.value =
-      inputDuration.value =
-      inputCadence.value =
-      inputElevation.value =
-        '';
+    // Hidden form
+    this._HiddenForm();
   }
 
   randerWorkoutMarker(workout) {
@@ -181,14 +189,16 @@ class App {
           className: `${workout.type}-popup`,
         })
       )
-      .setPopupContent(`workout.distance`)
+      .setPopupContent(
+        `${workout.type === 'running' ? '🏃‍♂️' : '🚴‍♀️'} ${workout.description}`
+      )
       .openPopup();
   }
 
   _renderWorkout(workout) {
     let html = `
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
-          <h2 class="workout__title">${workout.discriiption}</h2>
+          <h2 class="workout__title">${workout.description}</h2>
           <div class="workout__details">
             <span class="workout__icon">${
               workout.type === 'running' ? '🏃‍♂️' : '🚴‍♀️'
