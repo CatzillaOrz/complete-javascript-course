@@ -128,6 +128,18 @@ const getPosition = function () {
 getPosition().then((data) => console.log('', data)); //  [Promise] => Q(2)
 console.log('get Position'); // [function ] => Q(1)
 
+/*
+ **  task
+ **
+ **
+ */
+
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds + 1000);
+  });
+};
+
 const createImg = function (imagePath) {
   return new Promise(function (resolve, reject) {
     const img = document.createElement('img');
@@ -143,7 +155,20 @@ const createImg = function (imagePath) {
     });
   });
 };
-
-createImg(img1).then((img) => {
-  console.log('img 1 loaded');
-});
+let currentImg;
+createImg(img1)
+  .then((img) => {
+    console.log('img 1 loaded');
+    currentImg = img;
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+    return createImg(img2);
+  })
+  .then((img) => {
+    console.log('img 2 loaded');
+    currentImg = img;
+    return wait(2);
+  })
+  .catch((e) => console.log('', e));
