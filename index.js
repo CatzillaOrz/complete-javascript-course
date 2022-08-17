@@ -50,7 +50,6 @@ function getCountryAndNeighbour(name) {
     const [data] = JSON.parse(this.responseText);
     renderCountry(data);
 
-
     const [neighbour] = data.borders;
     if (!neighbour) return;
     // request(2)
@@ -93,8 +92,11 @@ function getCountryData(country) {
     .then((entity) => renderCountry(entity, 'neighbour'))
 
     .catch((err) => {
-      console.log('', err);
-      renderError(err.message);
+      console.log('💥💥💥💥Something went wrong 💥💥💥 ', err);
+      renderError(`'💥💥💥💥Something went wrong 💥💥💥   ${err.message}`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
     });
 }
 
