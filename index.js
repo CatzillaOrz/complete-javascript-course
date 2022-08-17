@@ -7,8 +7,18 @@
 'use strict';
 import './style.css';
 
+const img1 =
+  'https://stackblitz.com/files/js-39qpnd/github/CatzillaOrz/complete-javascript-course/master/16-Asynchronous/starter/img/img-1.jpg';
+
+const img2 =
+  'https://stackblitz.com/files/js-39qpnd/github/CatzillaOrz/complete-javascript-course/master/16-Asynchronous/starter/img/img-2.jpg';
+
+const img3 =
+  'https://stackblitz.com/files/js-39qpnd/github/CatzillaOrz/complete-javascript-course/master/16-Asynchronous/starter/img/img-3.jpg';
+
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
+const imgContainer = document.querySelector('.images');
 
 ///////////////////////////////////////
 function renderCountry(data, className = '') {
@@ -116,4 +126,24 @@ const getPosition = function () {
   });
 };
 getPosition().then((data) => console.log('', data)); //  [Promise] => Q(2)
-console.log('get Position');  // [function ] => Q(1)
+console.log('get Position'); // [function ] => Q(1)
+
+const createImg = function (imagePath) {
+  return new Promise(function (resolve, reject) {
+    const img = document.createElement('img');
+    img.src = imagePath;
+
+    img.addEventListener('load', function () {
+      imgContainer.append(img);
+      resolve(img);
+    });
+
+    img.addEventListener('error', function () {
+      reject(new Error('Image not found'));
+    });
+  });
+};
+
+createImg(img1).then((img) => {
+  console.log('img 1 loaded');
+});
