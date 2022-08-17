@@ -104,3 +104,16 @@ function getCountryData(country) {
 btn.addEventListener('click', function () {
   getCountryData('usa');
 });
+
+/*
+ **  [functions] > [Promise] > [Callback]
+ **
+ **
+ */
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+getPosition().then((data) => console.log('', data)); //  [Promise] => Q(2)
+console.log('get Position');  // [function ] => Q(1)
