@@ -11,19 +11,9 @@ const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
 ///////////////////////////////////////
-function getCountryData(name) {
-  const request = new XMLHttpRequest();
-  request.open(
-    'GET',
-    `https://restcountries.com/v2/name/${name}?fullText=true`
-  );
-  request.send();
-  request.addEventListener('load', function () {
-    const [data] = JSON.parse(this.responseText);
-    console.log('', data);
-
-    const html = `
-  <article class="country">
+function renderCountry(data, className = '') {
+  const html = `
+  <article class="country ${className}">
     <img class="country__img" src="${data.flag}" />
     <div class="country__data">
       <h3 class="country__name">${data.name}</h3>
@@ -37,11 +27,35 @@ function getCountryData(name) {
   </article>
   `;
 
-    countriesContainer.insertAdjacentHTML('beforeend', html);
-    countriesContainer.style.opacity = 1;
+  countriesContainer.insertAdjacentHTML('beforeend', html);
+  countriesContainer.style.opacity = 1;
+}
+//
+function getCountryData(name) {
+  // request (1)
+  const request = new XMLHttpRequest();
+  request.open(
+    'GET',
+    `https://restcountries.com/v2/name/${name}?fullText=true`
+  );
+  request.send();
+  request.addEventListener('load', function () {
+    const [data] = JSON.parse(this.responseText);
+    renderCountry(data);
+
+    const [neighbour] = data.borders;
+    if (!neighbour) return;
+    // request(2)
+    const request2 = new XMLHttpRequest();
+    request2.open('GET', `https://restcountries.com/v2/alpha/${neighbour}`);
+    request2.send();
+    request2.addEventListener('load', function () {
+      const data2 = JSON.parse(this.responseText);
+      renderCountry(data2, 'neighbour');
+    });
   });
 }
 
 getCountryData('portugal');
-getCountryData('USA');
-getCountryData('China');
+// getCountryData('USA');
+// getCountryData('China');
