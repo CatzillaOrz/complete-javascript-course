@@ -31,7 +31,7 @@ function renderCountry(data, className = '') {
   countriesContainer.style.opacity = 1;
 }
 //
-function getCountryData(name) {
+function getCountryAndNeighbour(name) {
   // request (1)
   const request = new XMLHttpRequest();
   request.open(
@@ -56,6 +56,6 @@ function getCountryData(name) {
   });
 }
 
-getCountryData('portugal');
+getCountryAndNeighbour('usa');
 // getCountryData('USA');
 // getCountryData('China');
