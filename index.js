@@ -205,7 +205,39 @@ const whereAmI = async function () {
 };
 
 // whereAmI();
+/* 
 whereAmI()
   .then((city) => console.log('2:', `${city}`))
   .catch((e) => console.log('3:', e))
   .finally(() => console.log('finished getting location'));
+ */
+
+/*
+ **  Promise all()
+ **
+ **
+ */
+
+const getJSON = function (url, errorMsg) {
+  return fetch(url).then((response) => {
+    if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
+    return response.json();
+  });
+};
+
+const get3Countries = async function (city1, city2, city3) {
+  try {
+    const data = await Promise.all([
+      getJSON(`https://restcountries.com/v2/name/${city1}?fullText=true`),
+      getJSON(`https://restcountries.com/v2/name/${city2}?fullText=true`),
+      getJSON(`https://restcountries.com/v2/name/${city3}?fullText=true`),
+    ]);
+    console.log(
+      '',
+      data.map((d) => d[0].capital)
+    );
+  } catch (e) {
+    console.log('err', e);
+  }
+};
+get3Countries('portugal', 'canada', 'usa');
