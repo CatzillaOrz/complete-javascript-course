@@ -23,19 +23,19 @@ const imgContainer = document.querySelector('.images');
 ///////////////////////////////////////
 function renderCountry(data, className = '') {
   const html = `
-     <article class="country ${className}">
-       <img class="country__img" src="${data.flag}" />
-       <div class="country__data">
-         <h3 class="country__name">${data.name}</h3>
-         <h4 class="country__region">${data.region}</h4>
-         <p class="country__row"><span>👫</span>${(
-           +data.population / 1000000
-         ).toFixed(1)}</p>
-         <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
-         <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
-       </div>
-     </article>
-     `;
+      <article class="country ${className}">
+        <img class="country__img" src="${data.flag}" />
+        <div class="country__data">
+          <h3 class="country__name">${data.name}</h3>
+          <h4 class="country__region">${data.region}</h4>
+          <p class="country__row"><span>👫</span>${(
+            +data.population / 1000000
+          ).toFixed(1)}</p>
+          <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+          <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
+        </div>
+      </article>
+      `;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
   countriesContainer.style.opacity = 1;
@@ -155,41 +155,51 @@ const createImg = function (imagePath) {
     });
   });
 };
-let currentImg;
-createImg(img1)
-  .then((img) => {
-    console.log('img 1 loaded');
-    currentImg = img;
-    return wait(2);
-  })
-  .then(() => {
-    currentImg.style.display = 'none';
-    return createImg(img2);
-  })
-  .then((img) => {
-    console.log('img 2 loaded');
-    currentImg = img;
-    return wait(2);
-  })
-  .catch((e) => console.log('', e));
-
+/* 
+ let currentImg;
+ createImg(img1)
+   .then((img) => {
+     console.log('img 1 loaded');
+     currentImg = img;
+     return wait(2);
+   })
+   .then(() => {
+     currentImg.style.display = 'none';
+     return createImg(img2);
+   })
+   .then((img) => {
+     console.log('img 2 loaded');
+     currentImg = img;
+     return wait(2);
+   })
+   .catch((e) => console.log('', e));
+  */
 const whereAmI = async function () {
-  // Geolocation
-  const pos = await getPosition();
-  const { latitude: lat, longitude: lng } = pos.coord;
+  try {
+    // Geolocation
+    const pos = await getPosition();
+    const { latitude: lat, longitude: lng } = pos.coord;
 
-  // Reverse geocoding
-  const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    console.log('', lat, lng);
 
-  const dataGeo = await resGeo.json();
-  console.log('', dataGeo);
+    // Reverse geocoding
+    const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
 
-  const res = await feth(
-    `https://restcountries.com/v2/name/${dataGeo.country}?fullText=true`
-  );
+    const dataGeo = await resGeo.json();
+    console.log('', dataGeo);
 
-  const [data] = await res.json();
+    const res = await feth(
+      `https://restcountries.com/v2/name/${dataGeo.country}?fullText=true`
+    );
 
-  console.log('', data);
-  renderCountry(data);
+    const [data] = await res.json();
+
+    console.log('', data);
+    renderCountry(data);
+  } catch (e) {
+    console.log('', e);
+  }
 };
+
+// whereAmI();
+// whereAmI();
