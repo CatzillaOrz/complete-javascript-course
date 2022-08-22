@@ -125,8 +125,8 @@ const getPosition = function () {
     navigator.geolocation.getCurrentPosition(resolve, reject);
   });
 };
-getPosition().then((data) => console.log('', data)); //  [Promise] => Q(2)
-console.log('get Position'); // [function ] => Q(1)
+// getPosition().then((data) => console.log('', data)); //  [Promise] => Q(2)
+// console.log('get Position'); // [function ] => Q(1)
 
 /*
  **  task
@@ -196,10 +196,16 @@ const whereAmI = async function () {
 
     console.log('', data);
     renderCountry(data);
+    return `You are in ${dataGeo.country}`;
   } catch (e) {
     console.log('', e);
+    // Throw error
+    throw e;
   }
 };
 
 // whereAmI();
-// whereAmI();
+whereAmI()
+  .then((city) => console.log('2:', `${city}`))
+  .catch((e) => console.log('3:', e))
+  .finally(() => console.log('finished getting location'));
