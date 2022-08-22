@@ -136,7 +136,7 @@ console.log('get Position'); // [function ] => Q(1)
 
 const wait = function (seconds) {
   return new Promise(function (resolve) {
-    setTimeout(resolve, seconds + 1000);
+    setTimeout(resolve, seconds * 1000);
   });
 };
 
