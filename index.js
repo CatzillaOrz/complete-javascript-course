@@ -248,22 +248,32 @@ const get3Countries = async function (city1, city2, city3) {
  **
  */
 
-const loadPage = async function(){
-  try{
+const loadPage = async function () {
+  try {
     let img = await createImg(img1);
-    console.log('Image 1 loaded', )
-    await wait(2);
-    img.style.display = 'none'
-
-    img = await createImg(img2);
-    console.log('image 2 loaded', );
+    console.log('Image 1 loaded');
     await wait(2);
     img.style.display = 'none';
-    
-    
-  }catch(e){
+
+    img = await createImg(img2);
+    console.log('image 2 loaded');
+    await wait(2);
+    img.style.display = 'none';
+  } catch (e) {
     console.log('err', e);
   }
-}
+};
 
-loadPage();
+// loadPage();
+
+const loadAll = async function () {
+  const imgArray = [img1, img2, img3];
+  try {
+    const imgs = imgArray.map(async (img) => await createImg(img));
+    console.log('imgs:', imgs);
+  } catch (e) {
+    console.log('e', e);
+  }
+};
+
+loadAll();
