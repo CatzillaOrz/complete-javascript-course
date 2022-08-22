@@ -267,14 +267,14 @@ const loadPage = async function () {
 // loadPage();
 
 const loadAll = async function () {
-  const imgArray = [img1, img2, img3];
+  const imgArray = [img1, img2, img2];
   try {
     const imgs = imgArray.map(async (img) => await createImg(img));
     console.log('imgs:', imgs);
 
     const imgsEl = await Promise.all(imgs);
-    imgsEl.forEach((img) => img.clasList.add('parallel'));
     console.log('imgEl', imgsEl);
+    imgsEl.forEach((img) => img.classList.add('parallel'));
   } catch (e) {
     console.log('e', e);
   }
