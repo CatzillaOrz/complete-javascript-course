@@ -240,4 +240,30 @@ const get3Countries = async function (city1, city2, city3) {
     console.log('err', e);
   }
 };
-get3Countries('portugal', 'canada', 'usa');
+// get3Countries('portugal', 'canada', 'usa');
+
+/*
+ **  coding challenge
+ **
+ **
+ */
+
+const loadPage = async function(){
+  try{
+    let img = await createImg(img1);
+    console.log('Image 1 loaded', )
+    await wait(2);
+    img.style.display = 'none'
+
+    img = await createImg(img2);
+    console.log('image 2 loaded', );
+    await wait(2);
+    img.style.display = 'none';
+    
+    
+  }catch(e){
+    console.log('err', e);
+  }
+}
+
+loadPage();
