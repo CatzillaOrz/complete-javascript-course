@@ -7,7 +7,9 @@
     "build": "parcel build index.html"
   },
   "devDependencies": {
-    "parcel": "^2.0.0-rc.0",
-    "sass": "^1.26.10"
+    "parcel": "^2.0.0-rc.0"
+  },
+  "dependencies": {
+    "sass": "^1.54.5"
   }
 }
